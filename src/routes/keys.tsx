@@ -118,28 +118,24 @@ function RouteComponent() {
           </DropdownMenuContent>
         </DropdownMenu>
         <div className="flex flex-col sm:flex-row gap-4 items-center">
-          <Button disabled={pageN === 1n}>
-            <Link
-              to={'/keys'}
-              search={{
-                ...Route.useSearch(),
-                page: Number(pageN - 1n),
-              }}
-            >
-              Previous
-            </Link>
-          </Button>
-          <Button>
-            <Link
-              to={'/keys'}
-              search={{
-                ...Route.useSearch(),
-                page: Number(pageN + 1n),
-              }}
-            >
-              Next
-            </Link>
-          </Button>
+          <Link
+            to={'/keys'}
+            search={{
+              ...Route.useSearch(),
+              page: Number(pageN - 1n),
+            }}
+          >
+            <Button disabled={pageN === 1n}>Previous</Button>
+          </Link>
+          <Link
+            to={'/keys'}
+            search={{
+              ...Route.useSearch(),
+              page: Number(pageN + 1n),
+            }}
+          >
+            <Button>Next</Button>
+          </Link>
         </div>
       </div>
       <Table>

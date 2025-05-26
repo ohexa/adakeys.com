@@ -29,37 +29,37 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         <div className="p-8 space-y-8">
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link to={'/'}>
+              <Link to={'/'}>
+                <NavigationMenuItem>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     AdaKeys.com
                   </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link
-                  to={'/keys'}
-                  search={{
-                    style: 'ae2td',
-                  }}
-                >
+                </NavigationMenuItem>
+              </Link>
+              <Link
+                to={'/keys'}
+                search={{
+                  style: 'ae2td',
+                }}
+              >
+                <NavigationMenuItem>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Icarus-Style (Ae2td)
                   </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link
-                  to={'/keys'}
-                  search={{
-                    style: 'addr1',
-                  }}
-                >
+                </NavigationMenuItem>
+              </Link>
+              <Link
+                to={'/keys'}
+                search={{
+                  style: 'addr1',
+                }}
+              >
+                <NavigationMenuItem>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Shelley-Era (Addr1)
                   </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                </NavigationMenuItem>
+              </Link>
             </NavigationMenuList>
           </NavigationMenu>
           <div className="px-4  ">
