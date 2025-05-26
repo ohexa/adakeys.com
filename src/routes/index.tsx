@@ -108,26 +108,6 @@ function App() {
           valid Cardano wallet addresses.
         </p>
       </section>
-      <section className="space-y-4">
-        <h2 className="text-xl font-black">Address Activity Monitoring</h2>
-        <p>
-          Each generated address is automatically checked for activity on the
-          Cardano blockchain:
-        </p>
-        <ul className="list-disc list-inside pl-4">
-          <li>🟢 Green: Address currently holds a balance.</li>
-          <li>
-            🟡 Yellow: Address had transactions in the past but now has no
-            funds.
-          </li>
-          <li>⚪ Gray: Address has never appeared on-chain.</li>
-        </ul>
-        <p>
-          These visual indicators help illustrate which derived addresses have
-          been used historically, providing insight into the network without
-          compromising privacy or security.
-        </p>
-      </section>
     </main>
   )
 }
