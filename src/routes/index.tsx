@@ -50,7 +50,7 @@ function App() {
       from: '/',
       to: '/keys',
       search: {
-        style: 'ae2td',
+        style: 'addr1',
         hex,
         size,
       },
