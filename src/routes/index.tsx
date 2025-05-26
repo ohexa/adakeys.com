@@ -1,12 +1,80 @@
+import { useState } from 'react'
+
 import { createFileRoute } from '@tanstack/react-router'
+import { mnemonicToEntropy } from 'web-bip39'
+import wordlist from 'web-bip39/wordlists/english'
+
+import { Input } from '@/components/ui/input'
 
 export const Route = createFileRoute('/')({
   component: App,
 })
 
 function App() {
+  const navigate = Route.useNavigate()
+  const [value, setValue] = useState<string>('')
+
+  const search = async () => {
+    let hex: string
+
+    try {
+      hex = Array.from(await mnemonicToEntropy(value, wordlist))
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('')
+    } catch (error) {
+      console.error(error)
+      // If not mnemonic, assume input is hex string already
+      // Validate hex string length (e.g. must be even length and valid hex)
+      const cleaned = value.trim()
+      const isValidHex =
+        /^[0-9a-fA-F]+$/.test(cleaned) && cleaned.length % 2 === 0
+
+      if (isValidHex) {
+        hex = cleaned.toLowerCase()
+      } else {
+        alert(
+          'Invalid input: please enter a valid BIP39 mnemonic or hex string ' +
+            value,
+        )
+        return
+      }
+    }
+
+    const entropyBytes = hex.length / 2
+    const entropyBits = entropyBytes * 8
+    const checksumBits = entropyBits / 32
+    const totalBits = entropyBits + checksumBits
+    const size = totalBits / 11
+
+    navigate({
+      from: '/',
+      to: '/keys',
+      search: {
+        style: 'ae2td',
+        hex,
+        size,
+      },
+    })
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      search()
+    }
+  }
+
   return (
     <main className="flex flex-col gap-8">
+      <section className="space-y-4">
+        <h2 className="text-xl font-black">Search</h2>
+        <Input
+          value={value}
+          onKeyDown={onKeyDown}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search by seed phrase or private key hex..."
+        />
+      </section>
       <section className="space-y-4">
         <h2 className="text-xl font-black">About the Project</h2>
         <p>
