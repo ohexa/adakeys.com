@@ -325,3 +325,5 @@ Each derived address is automatically checked for on-chain activity:
 - **Gray** identifies addresses that have never been seen on the blockchain.
 
 This visual system makes it easy to identify live or historical usage patterns across Cardano's public ledger.
+
+
